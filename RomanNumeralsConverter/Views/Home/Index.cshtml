@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<script>
+    function send() {
+        $.ajax({
+            type: 'POST',
+            //url: 'http://localhost:5192/api/Interpreter',
+            url: 'http://romanconverter.azurewebsites.net/api/Interpreter',                  
+            data: JSON.stringify($('#txtNumber').val()),
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+            success: function (data) {
+                if(data!=0)
+                {
+                    $('#txtResult').val(data);
+                }
+                else{
+                    alert($('#txtNumber').val() + " is not a vail input!")
+                    $('#txtResult').val();
+                }
+            }
+        });
+    }
+</script>
+<body background="~/Content/egypt2.jpg">
+<div class="jumbotron" style="font-family:Greek">
+    <table>
+        <tr>
+            <td>
+                <b>Roman Number :</b>
+            </td>
+            <td>
+                <input type="text" id="txtNumber" />
+            </td>
+            <td>
+                <button onclick="send();">Send Content</button>
+            </td>
+        </tr>
+        <tr><td></td></tr>
+        <tr>
+            <td>
+                <b>Result Number :</b>
+            </td>
+            <td>
+                <input type="text" id="txtResult" readonly="readonly"/>
+            </td>
+        </tr>
+    </table>
+</div>
+
+    <div class="row" >
+      
+            <h1 style="font-family:Greek">Let's Convert Roman Number</h1>
+            <p>
+
+            </p>
+      
+    </div>
+</body>
